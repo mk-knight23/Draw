@@ -1,61 +1,120 @@
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.nav{
-    width: 310px;
-    height: 50px;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f0f0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.toolbar {
+    background: #fff;
+    padding: 15px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.tool-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 0 15px;
+    border-right: 1px solid #eee;
+}
+
+.tool-section:last-child {
+    border-right: none;
+}
+
+.tool, .action {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    opacity: .3;
-    transition: opacity .5s;
-}
-.nav:hover{
-    opacity: 1;
+    justify-content: center;
+    font-size: 1.2em;
+    color: #444;
+    transition: all 0.2s ease;
 }
 
-.clr{
-    height: 30px;
-    width: 30px;
-    background-color:powderblue;
-   
-    border-radius: 50%;
-    border: 3px solid rgb(214, 214, 214);
-    transition: transform .5s;
-}
-.clr:hover{
-    transform: scale(1.2);
-}
-.clr:nth-child(1){
-    background-color: #000;
-}
-.clr:nth-child(2){
-    background-color: #EF626C;
-}
-.clr:nth-child(3){
-    background-color: #fdec03;
-}
-.clr:nth-child(4){
-    background-color: #24d102;
-}
-.clr:nth-child(5){
-    background-color: #fff;
+.tool:hover, .action:hover {
+    background: #f0f0f0;
+    color: #000;
 }
 
-button{
+.tool.active {
+    background: #e3e3e3;
+    color: #000;
+}
+
+.size-picker, .opacity-picker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.size-picker label, .opacity-picker label {
+    font-size: 0.9em;
+    color: #666;
+}
+
+input[type="range"] {
+    width: 100px;
+}
+
+#color-picker {
+    width: 40px;
+    height: 40px;
+    padding: 0;
     border: none;
-    outline: none;
-    padding: .6em 1em;
-    border-radius: 3px;
-    background-color: #03bb56;
-    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
 }
-.save{
-    background-color: #0f65d4;
+
+.preset-colors {
+    display: flex;
+    gap: 5px;
+}
+
+.clr {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px #ccc;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.clr:hover {
+    transform: scale(1.1);
+}
+
+.canvas-container {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+}
+
+#canvas {
+    background: #fff;
+    cursor: crosshair;
 }
