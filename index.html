@@ -2,62 +2,196 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtFlow Studio - Create Without Limits</title>
+    <meta name="description" content="Professional digital canvas with layers, blend modes, and infinite creative possibilities">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="batman-6-16.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Professional Paint App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="toolbar">
-        <div class="tool-section">
-            <button class="tool" data-tool="brush" title="Brush"><i class="fas fa-paint-brush"></i></button>
-            <button class="tool" data-tool="eraser" title="Eraser"><i class="fas fa-eraser"></i></button>
-            <button class="tool" data-tool="text" title="Text"><i class="fas fa-font"></i></button>
-            <div class="shapes">
-                <button class="tool" data-tool="rectangle" title="Rectangle"><i class="far fa-square"></i></button>
-                <button class="tool" data-tool="circle" title="Circle"><i class="far fa-circle"></i></button>
-                <button class="tool" data-tool="line" title="Line"><i class="fas fa-slash"></i></button>
-            </div>
-        </div>
-        
-        <div class="tool-section">
-            <div class="size-picker">
-                <label for="brush-size">Size:</label>
-                <input type="range" id="brush-size" min="1" max="50" value="5">
-                <span id="size-value">5px</span>
-            </div>
-            <div class="opacity-picker">
-                <label for="opacity">Opacity:</label>
-                <input type="range" id="opacity" min="1" max="100" value="100">
-                <span id="opacity-value">100%</span>
-            </div>
-        </div>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
 
-        <div class="tool-section colors">
-            <input type="color" id="color-picker" value="#000000">
-            <div class="preset-colors">
-                <div class="clr" data-clr="#000000"></div>
-                <div class="clr" data-clr="#EF626C"></div>
-                <div class="clr" data-clr="#fdec03"></div>
-                <div class="clr" data-clr="#24d102"></div>
-                <div class="clr" data-clr="#ffffff"></div>
-            </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-text">ARTFLOW</span>
+            <span class="logo-accent">STUDIO</span>
         </div>
+        <nav class="nav">
+            <button class="btn-secondary" id="shortcutsBtn">Shortcuts</button>
+            <button class="btn-primary" id="exportBtn">Export</button>
+        </nav>
+    </header>
 
-        <div class="tool-section actions">
-            <button class="action undo" title="Undo"><i class="fas fa-undo"></i></button>
-            <button class="action redo" title="Redo"><i class="fas fa-redo"></i></button>
-            <button class="action clear" title="Clear Canvas"><i class="fas fa-trash"></i></button>
-            <button class="action save" title="Save"><i class="fas fa-save"></i></button>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Toolbar -->
+        <aside class="toolbar glass">
+            <div class="tool-group">
+                <button class="tool-btn active" data-tool="brush" title="Brush (B)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/></svg>
+                </button>
+                <button class="tool-btn" data-tool="eraser" title="Eraser (E)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 20H7L3 16l10-10 8 8-1 6z"/><path d="M16 16l4 4"/></svg>
+                </button>
+                <button class="tool-btn" data-tool="spray" title="Spray (S)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="8" cy="10" r="1"/><circle cx="16" cy="10" r="1"/><circle cx="10" cy="16" r="1"/><circle cx="14" cy="16" r="1"/><circle cx="12" cy="8" r="1"/></svg>
+                </button>
+                <button class="tool-btn" data-tool="fill" title="Fill (F)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                </button>
+                <button class="tool-btn" data-tool="eyedropper" title="Eyedropper (I)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22l1-1h3l9-9"/><path d="M3 21v-3l9-9"/><path d="M15 6l3-3 3 3-3 3-3-3z"/></svg>
+                </button>
+            </div>
+            <div class="tool-group">
+                <button class="tool-btn" data-tool="line" title="Line (L)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="19" x2="19" y2="5"/></svg>
+                </button>
+                <button class="tool-btn" data-tool="rectangle" title="Rectangle (R)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                </button>
+                <button class="tool-btn" data-tool="circle" title="Circle (C)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+                </button>
+                <button class="tool-btn" data-tool="text" title="Text (T)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                </button>
+            </div>
+            <div class="tool-group">
+                <button class="tool-btn" id="undoBtn" title="Undo (Ctrl+Z)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+                </button>
+                <button class="tool-btn" id="redoBtn" title="Redo (Ctrl+Y)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"/></svg>
+                </button>
+                <button class="tool-btn" id="clearBtn" title="Clear Canvas">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Canvas Area -->
+        <main class="canvas-container">
+            <div class="canvas-controls glass">
+                <button class="icon-btn" id="zoomOut" title="Zoom Out (-)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+                <span class="zoom-level" id="zoomLevel">100%</span>
+                <button class="icon-btn" id="zoomIn" title="Zoom In (+)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+                <button class="icon-btn" id="gridToggle" title="Toggle Grid (G)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="icon-btn" id="commandPalette" title="Command Palette (Ctrl+K)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                </button>
+            </div>
+            <canvas id="canvas" width="1200" height="800"></canvas>
+        </main>
+
+        <!-- Properties Panel -->
+        <aside class="properties glass">
+            <div class="panel-section">
+                <h3>Color</h3>
+                <div class="color-picker-wrapper">
+                    <input type="color" id="colorPicker" value="#6366F1">
+                    <input type="text" id="colorHex" value="#6366F1" maxlength="7">
+                </div>
+                <div class="color-presets">
+                    <button class="preset" style="background:#6366F1" data-color="#6366F1"></button>
+                    <button class="preset" style="background:#8B5CF6" data-color="#8B5CF6"></button>
+                    <button class="preset" style="background:#EC4899" data-color="#EC4899"></button>
+                    <button class="preset" style="background:#10B981" data-color="#10B981"></button>
+                    <button class="preset" style="background:#F59E0B" data-color="#F59E0B"></button>
+                    <button class="preset" style="background:#EF4444" data-color="#EF4444"></button>
+                    <button class="preset" style="background:#000000" data-color="#000000"></button>
+                    <button class="preset" style="background:#FFFFFF" data-color="#FFFFFF"></button>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3>Brush</h3>
+                <label>Size: <span id="sizeValue">10</span>px</label>
+                <input type="range" id="brushSize" min="1" max="50" value="10">
+                <label>Opacity: <span id="opacityValue">100</span>%</label>
+                <input type="range" id="brushOpacity" min="1" max="100" value="100">
+            </div>
+            <div class="panel-section">
+                <h3>Symmetry</h3>
+                <div class="symmetry-controls">
+                    <button class="toggle-btn" id="symmetryH">Horizontal</button>
+                    <button class="toggle-btn" id="symmetryV">Vertical</button>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3>Layers</h3>
+                <div class="layers-list" id="layersList"></div>
+                <button class="btn-secondary full-width" id="addLayer">+ Add Layer</button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Status Bar -->
+    <footer class="status-bar glass">
+        <span id="cursorPos">X: 0, Y: 0</span>
+        <span id="actionCount">Actions: 0</span>
+        <span id="autoSave">Auto-saved</span>
+    </footer>
+
+    <!-- Command Palette Modal -->
+    <div class="modal" id="commandModal">
+        <div class="modal-content glass">
+            <input type="text" id="commandInput" placeholder="Type a command...">
+            <div class="command-list" id="commandList"></div>
         </div>
     </div>
 
-    <div class="canvas-container">
-        <canvas id="canvas"></canvas>
+    <!-- Shortcuts Modal -->
+    <div class="modal" id="shortcutsModal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2>Keyboard Shortcuts</h2>
+                <button class="close-btn" id="closeShortcuts">×</button>
+            </div>
+            <div class="shortcuts-grid">
+                <div class="shortcut-group">
+                    <h3>Tools</h3>
+                    <div class="shortcut"><kbd>B</kbd><span>Brush</span></div>
+                    <div class="shortcut"><kbd>E</kbd><span>Eraser</span></div>
+                    <div class="shortcut"><kbd>S</kbd><span>Spray</span></div>
+                    <div class="shortcut"><kbd>F</kbd><span>Fill</span></div>
+                    <div class="shortcut"><kbd>I</kbd><span>Eyedropper</span></div>
+                    <div class="shortcut"><kbd>L</kbd><span>Line</span></div>
+                    <div class="shortcut"><kbd>R</kbd><span>Rectangle</span></div>
+                    <div class="shortcut"><kbd>C</kbd><span>Circle</span></div>
+                    <div class="shortcut"><kbd>T</kbd><span>Text</span></div>
+                </div>
+                <div class="shortcut-group">
+                    <h3>Actions</h3>
+                    <div class="shortcut"><kbd>Ctrl</kbd>+<kbd>Z</kbd><span>Undo</span></div>
+                    <div class="shortcut"><kbd>Ctrl</kbd>+<kbd>Y</kbd><span>Redo</span></div>
+                    <div class="shortcut"><kbd>Ctrl</kbd>+<kbd>K</kbd><span>Command Palette</span></div>
+                    <div class="shortcut"><kbd>+</kbd><span>Zoom In</span></div>
+                    <div class="shortcut"><kbd>-</kbd><span>Zoom Out</span></div>
+                    <div class="shortcut"><kbd>0</kbd><span>Reset Zoom</span></div>
+                    <div class="shortcut"><kbd>G</kbd><span>Toggle Grid</span></div>
+                    <div class="shortcut"><kbd>Esc</kbd><span>Close Modals</span></div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
