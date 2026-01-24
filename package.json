@@ -12,7 +12,6 @@
     "@motionone/vue": "^10.16.4",
     "@vueuse/core": "^14.1.0",
     "konva": "^10.2.0",
-    "lucide-vue-next": "^0.563.0",
     "pinia": "^3.0.4",
     "vue": "^3.5.24",
     "vue-konva": "^3.3.0"
