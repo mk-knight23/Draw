@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-studio-bg text-slate-100 font-sans selection:bg-studio-primary selection:text-white antialiased overflow-hidden;
+  margin: 0;
+  display: block;
+}
+
+#app {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.glass-toolbar {
+  @apply bg-studio-card/80 backdrop-blur-2xl border border-white/5 shadow-2xl rounded-2xl;
+}
+
+.tool-button {
+  @apply p-3 rounded-xl transition-all hover:bg-white/5 active:scale-90 text-slate-400 hover:text-white;
+}
+
+.tool-button-active {
+  @apply bg-studio-primary/20 text-studio-primary hover:bg-studio-primary/30 hover:text-studio-primary shadow-lg shadow-studio-primary/10;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full;
+}
